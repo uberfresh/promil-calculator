@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Promil Hesaplayıcı</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+<div class="container my-4">
+  <h1 class="text-center mb-4">Promil Hesaplayıcı</h1>
+
+  <div class="row">
+    <!-- Form Column -->
+    <div class="col-lg-6">
+      <!-- User Info -->
+      <div class="card p-3 mb-4">
+        <h4>Kullanıcı Bilgileri</h4>
+        <label for="weight">Kilonuz:</label>
+        <input type="number" id="weight" class="form-control mb-2" min="0" max="250" value="80" placeholder="Kilo (kg)" />
+        
+        <label for="gender">Cinsiyet:</label>
+        <select id="gender" class="form-select mb-2">
+          <option value="male">Erkek</option>
+          <option value="female">Kadın</option>
+        </select>
+      </div>
+
+      <!-- Add Drink -->
+      <div class="card p-3 mb-4">
+        <h4>İçecek Ekle</h4>
+        <label for="drink">Hazır Seç</label>
+        <select id="drink" class="form-select mb-2">
+          <option value="beer-500">Bira 50cl (5%)</option>
+          <option value="beer-330">Bira 33cl (5%)</option>
+          <option value="raki-tek">Rakı Duble 8cl (45%)</option>
+          <option value="raki-duble">Rakı Tek 4cl (45%)</option>
+          <option value="wine">Şarap Kadeh 15cl (12%)</option>
+          <option value="vodka">Votka Shot 5cl (40%)</option>
+          <option value="custom">Diğer</option>
+        </select>
+
+        <label for="drinkName">İsim</label>
+        <input type="text" id="drinkName" class="form-control mb-2" placeholder="İsim" />
+
+        <label for="percentage">Alkol Oranı (%)</label>
+        <input type="number" id="percentage" class="form-control mb-2" placeholder="Alkol %" />
+
+        <label for="volume">Hacim (ml)</label>
+        <input type="number" id="volume" class="form-control mb-2" placeholder="Hacim (ml)" />
+
+        <label for="quantity">Adet</label>
+        <input type="number" id="quantity" class="form-control mb-2" value="1" placeholder="Adet" />
+
+        <label for="timeSince">Ne zaman içtiniz?</label>
+        <select id="timeSince" class="form-select mb-3">
+          <option value="0">Şimdi</option>
+          <option value="1">1 saat önce</option>
+          <option value="2">2 saat önce</option>
+          <option value="3">3 saat önce</option>
+          <option value="4">4 saat önce</option>
+          <option value="5">5 saat önce</option>
+          <option value="6">6 saat önce</option>
+        </select>
+
+        <button class="btn btn-primary w-100" id="calculateBtn">İçecek Ekle</button>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-lg-6">
+      <!-- Promil Display -->
+      <div class="card p-3 mb-4 text-center">
+        <h4>Şu Anki Promil</h4>
+        <div id="promil-display" class="text-primary mx-auto mt-3">0.00</div>
+      </div>
+
+      <!-- Drink Table -->
+      <div class="card p-3 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="mb-0">İçecek Listesi</h4>
+          <button id="clearAllBtn" class="btn btn-danger">
+            <i class="bi bi-trash"></i> Tümünü Temizle
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>İsim</th>
+                <th>Alkol %</th>
+                <th>Hacim (ml)</th>
+                <th>Adet</th>
+                <th>İçme Zamanı</th>
+                <th>Promil Etkisi</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="drinksList">
+              <tr class="no-drinks-row">
+                <td colspan="7" class="text-center">Henüz içecek eklenmedi</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="bg-white mb-4">
+        <h4 class="text-center mb-3">Promil Grafiği</h4>
+        <canvas id="promilChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
